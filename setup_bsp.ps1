@@ -18,7 +18,7 @@ if ([string]::IsNullOrWhiteSpace($BspRoot)) {
     if (-not (Test-Path $BspRoot)) {
         New-Item -ItemType Directory -Force -Path (Split-Path $BspRoot -Parent) | Out-Null
         Write-Host "Cloning official Artery AT32A403A Firmware Library..."
-        git clone --depth 1 https://gitee.com/arterytek/AT32A403A_Firmware_Library.git $BspRoot
+        git clone --depth 1 --branch v2.0.7 https://gitee.com/arterytek/AT32A403A_Firmware_Library.git $BspRoot
     }
 }
 $BspRoot = (Resolve-Path $BspRoot).Path
