@@ -6,8 +6,8 @@ static volatile uint32_t g_ms = 0U;
 void timebase_init(void)
 {
     g_ms = 0U;
-    SystemCoreClockUpdate();
-    SysTick_Config(SystemCoreClock / 1000U);
+    system_core_clock_update();
+    SysTick_Config(system_core_clock / 1000U);
 }
 
 uint32_t timebase_millis(void) { return g_ms; }
