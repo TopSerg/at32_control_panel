@@ -1,0 +1,16 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>AT32A403AVGT7;USE_STDPERIPH_DRIVER;AT_START_A403A_V1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(ClCompile.AdditionalIncludeDirectories);$(ProjectDir)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ToolchainSettingsContainer>
+      <ARMCPU Condition="'%(ToolchainSettingsContainer.ARMCPU)' == ''">cortex-m4</ARMCPU>
+      <InstructionSet Condition="'%(ToolchainSettingsContainer.InstructionSet)' == ''">THUMB</InstructionSet>
+      <ARMFPU Condition="'%(ToolchainSettingsContainer.ARMFPU)' == ''">fpv4-sp-d16</ARMFPU>
+      <FloatABI Condition="'%(ToolchainSettingsContainer.FloatABI)' == ''">hard</FloatABI>
+    </ToolchainSettingsContainer>
+  </ItemDefinitionGroup>
+</Project>

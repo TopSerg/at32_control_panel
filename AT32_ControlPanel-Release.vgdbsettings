@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<VisualGDBProjectSettings2 xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ConfigurationName>Release</ConfigurationName>
+  <Project xsi:type="com.visualgdb.project.embedded">
+    <CustomSourceDirectories><Directories /><PathStyle>MinGWUnixSlash</PathStyle></CustomSourceDirectories>
+    <MainSourceDirectory>$(ProjectDir)</MainSourceDirectory><EmbeddedProfileFile>stm32.xml</EmbeddedProfileFile>
+    <MemoryListSource>LinkerScript</MemoryListSource>
+    <LinkerScriptIncludeSearchPath><string>vendor/linker/AT32A403AxG_FLASH.ld</string></LinkerScriptIncludeSearchPath>
+  </Project>
+  <Build xsi:type="com.visualgdb.build.msbuild"><ProjectFile>AT32_ControlPanel.vcxproj</ProjectFile><ParallelJobCount>1</ParallelJobCount><SuppressDirectoryChangeMessages>true</SuppressDirectoryChangeMessages></Build>
+  <CustomBuild><PreSyncActions /><PreBuildActions /><PostBuildActions /><PreCleanActions /><PostCleanActions /></CustomBuild>
+  <CustomDebug><PreDebugActions /><PostDebugActions /><DebugStopActions /><BreakMode>Default</BreakMode></CustomDebug>
+  <CodeSense><Enabled>Unknown</Enabled></CodeSense>
+  <Debug xsi:type="com.visualgdb.debug.embedded">
+    <AdditionalStartupCommands><GDBPreStartupCommands /><GDBStartupCommands /><GDBFinalizationCommands /></AdditionalStartupCommands>
+    <DebugMethod>
+      <ID>jlink-jtag</ID>
+      <Configuration xsi:type="com.visualgdb.edp.segger.settings">
+        <CommandLine>-select USB -device AT32A403AVGT7 -speed auto -if SWD</CommandLine>
+        <ProgramMode>Enabled</ProgramMode>
+        <StartupCommands><string>target remote :$$SYS:GDB_PORT$$</string><string>mon reset</string><string>load</string></StartupCommands>
+        <UseUnreliableLiveMemoryEngine>false</UseUnreliableLiveMemoryEngine><ProgramFLASHUsingExternalTool>false</ProgramFLASHUsingExternalTool><PreferredGDBPort>0</PreferredGDBPort>
+      </Configuration>
+    </DebugMethod>
+    <AutoDetectRTOS>false</AutoDetectRTOS><SemihostingSupport>Auto</SemihostingSupport>
+    <TimestampProvider>com.sysprogs.arm.dwt</TimestampProvider><TimestampProviderTicksPerSecond>192000000</TimestampProviderTicksPerSecond><KeepConsoleAfterExit>false</KeepConsoleAfterExit>
+  </Debug>
+</VisualGDBProjectSettings2>

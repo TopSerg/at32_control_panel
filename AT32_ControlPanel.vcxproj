@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB"><Configuration>Debug</Configuration><Platform>VisualGDB</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB"><Configuration>Release</Configuration><Platform>VisualGDB</Platform></ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{A403A403-A403-4A03-A403-A403A403A403}</ProjectGuid>
+    <BSP_ID>com.sysprogs.arm.stm32</BSP_ID>
+    <BSP_VERSION>2024.01</BSP_VERSION>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'"><Import Project="Main.props" /></ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'"><Import Project="Main.props" /></ImportGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>14.2.1/15.2/r2</ToolchainVersion>
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+    <GenerateHexFile>true</GenerateHexFile>
+    <OutputMemoryUtilization>true</OutputMemoryUtilization>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <GNUConfigurationType>Release</GNUConfigurationType>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>14.2.1/15.2/r2</ToolchainVersion>
+    <MCUPropertyListFile>$(ProjectDir)stm32.props</MCUPropertyListFile>
+    <GenerateHexFile>true</GenerateHexFile>
+    <OutputMemoryUtilization>true</OutputMemoryUtilization>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>src;vendor\drivers\inc;vendor\cmsis\core_support;vendor\cmsis\device_support;vendor\template;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;AT32A403AVGT7;USE_STDPERIPH_DRIVER;AT_START_A403A_V1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>O0</Optimization>
+    </ClCompile>
+    <Link>
+      <LinkerScript>vendor/linker/AT32A403AxG_FLASH.ld</LinkerScript>
+      <AdditionalOptions>-specs=nano.specs -specs=nosys.specs -Wl,--no-warn-rwx-segments %(Link.AdditionalOptions)</AdditionalOptions>
+      <GenerateMapFile>true</GenerateMapFile><PrintMemoryUsage>true</PrintMemoryUsage>
+    </Link>
+    <ToolchainSettingsContainer><ARMCPU>cortex-m4</ARMCPU><ARMFPU>fpv4-sp-d16</ARMFPU><FloatABI>hard</FloatABI></ToolchainSettingsContainer>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>src;vendor\drivers\inc;vendor\cmsis\core_support;vendor\cmsis\device_support;vendor\template;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG=1;AT32A403AVGT7;USE_STDPERIPH_DRIVER;AT_START_A403A_V1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>O2</Optimization><InlineFunctions>true</InlineFunctions>
+    </ClCompile>
+    <Link>
+      <LinkerScript>vendor/linker/AT32A403AxG_FLASH.ld</LinkerScript>
+      <AdditionalOptions>-specs=nano.specs -specs=nosys.specs -Wl,--no-warn-rwx-segments %(Link.AdditionalOptions)</AdditionalOptions>
+      <GenerateMapFile>true</GenerateMapFile><PrintMemoryUsage>true</PrintMemoryUsage>
+    </Link>
+    <ToolchainSettingsContainer><ARMCPU>cortex-m4</ARMCPU><ARMFPU>fpv4-sp-d16</ARMFPU><FloatABI>hard</FloatABI></ToolchainSettingsContainer>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <ClInclude Include="src\at32a403a_conf.h" />
+    <ClInclude Include="src\bench_monitor.h" />
+    <ClInclude Include="src\nextion.h" />
+    <ClInclude Include="src\timebase.h" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\bench_monitor.c" />
+    <ClCompile Include="src\nextion.c" />
+    <ClCompile Include="src\timebase.c" />
+    <ClCompile Include="vendor\template\at32a403a_clock.c" />
+    <ClCompile Include="vendor\cmsis\device_support\system_at32a403a.c" />
+    <ClCompile Include="vendor\startup\startup_at32a403a.s" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_adc.c" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_crm.c" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_dma.c" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_flash.c" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_gpio.c" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_misc.c" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_tmr.c" />
+    <ClCompile Include="vendor\drivers\src\at32a403a_usart.c" />
+  </ItemGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

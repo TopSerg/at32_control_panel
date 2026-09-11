@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<EmbeddedProfile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+  <ToolchainVersion>
+    <GCC>14.2.1</GCC><GDB>15.2</GDB><Revision>2</Revision>
+  </ToolchainVersion>
+  <BspID>com.sysprogs.arm.stm32</BspID>
+  <BspVersion>2024.01</BspVersion>
+  <McuID>STM32F405ZG</McuID>
+  <MCUProperties>
+    <Entries>
+      <KeyValue><Key>com.sysprogs.bspoptions.primary_memory</Key><Value>flash</Value></KeyValue>
+      <KeyValue><Key>com.sysprogs.bspoptions.arm.floatmode</Key><Value>-mfloat-abi=hard</Value></KeyValue>
+      <KeyValue><Key>com.sysprogs.mcuoptions.ignore_startup_file</Key><Value>1</Value></KeyValue>
+    </Entries>
+  </MCUProperties>
+  <BSPSourceFolderName>Device-specific files</BSPSourceFolderName>
+  <ReferencedFrameworks />
+  <FrameworkProperties><Entries /></FrameworkProperties>
+  <TestFrameworkProperties><Entries /></TestFrameworkProperties>
+</EmbeddedProfile>
