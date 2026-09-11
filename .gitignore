@@ -1,0 +1,14 @@
+.vs/
+VisualGDB/
+Debug/
+Release/
+*.user
+*.suo
+*.VC.db
+*.VC.VC.opendb
+*.elf
+*.bin
+*.hex
+*.map
+third_party/
+vendor/
