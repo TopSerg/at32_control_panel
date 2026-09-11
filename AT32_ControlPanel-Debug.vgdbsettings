@@ -2,33 +2,297 @@
 <VisualGDBProjectSettings2 xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ConfigurationName>Debug</ConfigurationName>
   <Project xsi:type="com.visualgdb.project.embedded">
-    <CustomSourceDirectories><Directories /><PathStyle>MinGWUnixSlash</PathStyle></CustomSourceDirectories>
+    <CustomSourceDirectories>
+      <Directories />
+      <PathStyle>MinGWUnixSlash</PathStyle>
+    </CustomSourceDirectories>
+    <AutoProgramSPIFFSPartition>true</AutoProgramSPIFFSPartition>
     <MainSourceDirectory>$(ProjectDir)</MainSourceDirectory>
+    <ExportAdvancedBuildVariables>false</ExportAdvancedBuildVariables>
+    <SkipImportedProjectChecks>false</SkipImportedProjectChecks>
     <EmbeddedProfileFile>stm32.xml</EmbeddedProfileFile>
     <MemoryListSource>LinkerScript</MemoryListSource>
-    <LinkerScriptIncludeSearchPath><string>vendor/linker/AT32A403AxG_FLASH.ld</string></LinkerScriptIncludeSearchPath>
+<LinkerScriptIncludeSearchPath>
+      <string />
+      <string>vendor/linker/AT32A403AxG_FLASH.ld</string>
+    </LinkerScriptIncludeSearchPath>
+    <TroubleshootGeneratedConfigurationFiles>false</TroubleshootGeneratedConfigurationFiles>
   </Project>
   <Build xsi:type="com.visualgdb.build.msbuild">
-    <ProjectFile>AT32_ControlPanel.vcxproj</ProjectFile><ParallelJobCount>1</ParallelJobCount><SuppressDirectoryChangeMessages>true</SuppressDirectoryChangeMessages>
+    <BuildLogMode xsi:nil="true" />
+    <ToolchainID>
+      <Version>
+        <Revision>0</Revision>
+      </Version>
+    </ToolchainID>
+    <ProjectFile>AT32_ControlPanel.vcxproj</ProjectFile>
+    <RemoteBuildEnvironment>
+      <Records />
+      <EnvironmentSetupFiles />
+    </RemoteBuildEnvironment>
+    <ParallelJobCount>1</ParallelJobCount>
+    <SuppressDirectoryChangeMessages>true</SuppressDirectoryChangeMessages>
+    <BuildAsRoot>false</BuildAsRoot>
   </Build>
-  <CustomBuild><PreSyncActions /><PreBuildActions /><PostBuildActions /><PreCleanActions /><PostCleanActions /></CustomBuild>
-  <CustomDebug><PreDebugActions /><PostDebugActions /><DebugStopActions /><BreakMode>Default</BreakMode></CustomDebug>
-  <CodeSense><Enabled>Unknown</Enabled></CodeSense>
+  <CustomBuild>
+    <PreSyncActions />
+    <PreBuildActions />
+    <PostBuildActions>
+      <CustomActionBase xsi:type="CommandLineAction">
+        <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
+        <RemoteHost>
+          <HostName>BuildMachine</HostName>
+          <Transport>BuiltinShortcut</Transport>
+        </RemoteHost>
+        <Command>py</Command>
+        <Arguments>crc_binary_add.py  VisualGDB/Debug/$(ProjectName).bin</Arguments>
+        <WorkingDirectory>$(BuildDir)</WorkingDirectory>
+        <BackgroundMode>false</BackgroundMode>
+      </CustomActionBase>
+      <CustomActionBase xsi:type="CommandLineAction">
+        <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
+        <RemoteHost>
+          <HostName>BuildMachine</HostName>
+          <Transport>BuiltinShortcut</Transport>
+        </RemoteHost>
+        <Command>py</Command>
+        <Arguments>firmware_info.py  VisualGDB/Debug/$(ProjectName).bin</Arguments>
+        <WorkingDirectory>$(BuildDir)</WorkingDirectory>
+        <BackgroundMode>false</BackgroundMode>
+      </CustomActionBase>
+    </PostBuildActions>
+    <PreCleanActions />
+    <PostCleanActions />
+  </CustomBuild>
+  <CustomDebug>
+    <PreDebugActions />
+    <PostDebugActions />
+    <DebugStopActions />
+    <BreakMode>Default</BreakMode>
+    <CustomBreakCommand>
+      <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
+      <RemoteHost>
+        <HostName>BuildMachine</HostName>
+        <Transport>BuiltinShortcut</Transport>
+      </RemoteHost>
+      <BackgroundMode xsi:nil="true" />
+    </CustomBreakCommand>
+  </CustomDebug>
+  <CustomShortcuts>
+    <Shortcuts />
+    <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
+  </CustomShortcuts>
+  <UserDefinedVariables />
+  <ImportedPropertySheets />
+  <CodeSense>
+    <Enabled>Unknown</Enabled>
+    <ExtraSettings>
+      <HideErrorsInSystemHeaders>true</HideErrorsInSystemHeaders>
+      <SupportLightweightReferenceAnalysis>true</SupportLightweightReferenceAnalysis>
+      <CheckForClangFormatFiles>true</CheckForClangFormatFiles>
+      <FormattingEngine xsi:nil="true" />
+    </ExtraSettings>
+    <CodeAnalyzerSettings>
+      <Enabled>true</Enabled>
+      <SelectedAnalyzers>
+        <string>alpha.clone.CloneChecker</string>
+        <string>alpha.core.BoolAssignment</string>
+        <string>alpha.core.CallAndMessageUnInitRefArg</string>
+        <string>alpha.core.CastSize</string>
+        <string>alpha.core.CastToStruct</string>
+        <string>alpha.core.Conversion</string>
+        <string>alpha.core.DynamicTypeChecker</string>
+        <string>alpha.core.FixedAddr</string>
+        <string>alpha.core.IdenticalExpr</string>
+        <string>alpha.core.PointerArithm</string>
+        <string>alpha.core.PointerSub</string>
+        <string>alpha.core.SizeofPtr</string>
+        <string>alpha.core.StackAddressAsyncEscape</string>
+        <string>alpha.core.TestAfterDivZero</string>
+        <string>alpha.cplusplus.DeleteWithNonVirtualDtor</string>
+        <string>alpha.cplusplus.IteratorRange</string>
+        <string>alpha.cplusplus.MisusedMovedObject</string>
+        <string>alpha.deadcode.UnreachableCode</string>
+        <string>alpha.security.ArrayBound</string>
+        <string>alpha.security.ArrayBoundV2</string>
+        <string>alpha.security.MallocOverflow</string>
+        <string>alpha.security.ReturnPtrRange</string>
+        <string>alpha.security.taint.TaintPropagation</string>
+        <string>alpha.unix.BlockInCriticalSection</string>
+        <string>alpha.unix.Chroot</string>
+        <string>alpha.unix.cstring.BufferOverlap</string>
+        <string>alpha.unix.cstring.NotNullTerminated</string>
+        <string>alpha.unix.cstring.OutOfBounds</string>
+        <string>alpha.unix.PthreadLock</string>
+        <string>alpha.unix.SimpleStream</string>
+        <string>alpha.unix.Stream</string>
+        <string>apiModeling.google.GTest</string>
+        <string>core.builtin.BuiltinFunctions</string>
+        <string>core.builtin.NoReturnFunctions</string>
+        <string>core.CallAndMessage</string>
+        <string>core.DivideZero</string>
+        <string>core.DynamicTypePropagation</string>
+        <string>core.NonnilStringConstants</string>
+        <string>core.NonNullParamChecker</string>
+        <string>core.NullDereference</string>
+        <string>core.StackAddressEscape</string>
+        <string>core.UndefinedBinaryOperatorResult</string>
+        <string>core.uninitialized.ArraySubscript</string>
+        <string>core.uninitialized.Assign</string>
+        <string>core.uninitialized.Branch</string>
+        <string>core.uninitialized.CapturedBlockVariable</string>
+        <string>core.uninitialized.UndefReturn</string>
+        <string>core.VLASize</string>
+        <string>cplusplus.NewDelete</string>
+        <string>cplusplus.NewDeleteLeaks</string>
+        <string>cplusplus.SelfAssignment</string>
+        <string>deadcode.DeadStores</string>
+        <string>llvm.Conventions</string>
+        <string>nullability.NullableDereferenced</string>
+        <string>nullability.NullablePassedToNonnull</string>
+        <string>nullability.NullableReturnedFromNonnull</string>
+        <string>nullability.NullPassedToNonnull</string>
+        <string>nullability.NullReturnedFromNonnull</string>
+        <string>optin.cplusplus.VirtualCall</string>
+        <string>optin.mpi.MPI-Checker</string>
+        <string>optin.osx.cocoa.localizability.EmptyLocalizationContextChecker</string>
+        <string>optin.osx.cocoa.localizability.NonLocalizedStringChecker</string>
+        <string>optin.performance.Padding</string>
+        <string>optin.portability.UnixAPI</string>
+        <string>security.FloatLoopCounter</string>
+        <string>security.insecureAPI.getpw</string>
+        <string>security.insecureAPI.gets</string>
+        <string>security.insecureAPI.mkstemp</string>
+        <string>security.insecureAPI.mktemp</string>
+        <string>security.insecureAPI.rand</string>
+        <string>security.insecureAPI.strcpy</string>
+        <string>security.insecureAPI.UncheckedReturn</string>
+        <string>security.insecureAPI.vfork</string>
+        <string>unix.API</string>
+        <string>unix.cstring.BadSizeArg</string>
+        <string>unix.cstring.NullArg</string>
+        <string>unix.Malloc</string>
+        <string>unix.MallocSizeof</string>
+        <string>unix.MismatchedDeallocator</string>
+        <string>unix.StdCLibraryFunctions</string>
+        <string>unix.Vfork</string>
+        <string>valist.CopyToSelf</string>
+        <string>valist.Uninitialized</string>
+        <string>valist.Unterminated</string>
+      </SelectedAnalyzers>
+      <ExtraArguments>
+        <string>-analyzer-store=region</string>
+        <string>-analyzer-opt-analyze-nested-blocks</string>
+        <string>-analyzer-eagerly-assume</string>
+      </ExtraArguments>
+    </CodeAnalyzerSettings>
+  </CodeSense>
+  <Configurations />
+  <ProgramArgumentsSuggestions />
   <Debug xsi:type="com.visualgdb.debug.embedded">
-    <AdditionalStartupCommands><GDBPreStartupCommands /><GDBStartupCommands /><GDBFinalizationCommands /></AdditionalStartupCommands>
+    <AdditionalStartupCommands>
+      <GDBPreStartupCommands />
+      <GDBStartupCommands />
+      <GDBFinalizationCommands />
+    </AdditionalStartupCommands>
+    <AdditionalGDBSettings>
+      <Features>
+        <DisableAutoDetection>false</DisableAutoDetection>
+        <UseFrameParameter>false</UseFrameParameter>
+        <SimpleValuesFlagSupported>false</SimpleValuesFlagSupported>
+        <ListLocalsSupported>false</ListLocalsSupported>
+        <ByteLevelMemoryCommandsAvailable>false</ByteLevelMemoryCommandsAvailable>
+        <ThreadInfoSupported>false</ThreadInfoSupported>
+        <PendingBreakpointsSupported>false</PendingBreakpointsSupported>
+        <SupportTargetCommand>false</SupportTargetCommand>
+        <ReliableBreakpointNotifications>false</ReliableBreakpointNotifications>
+      </Features>
+      <EnableSmartStepping>false</EnableSmartStepping>
+      <FilterSpuriousStoppedNotifications>false</FilterSpuriousStoppedNotifications>
+      <ForceSingleThreadedMode>false</ForceSingleThreadedMode>
+      <UseAppleExtensions>false</UseAppleExtensions>
+      <CanAcceptCommandsWhileRunning>false</CanAcceptCommandsWhileRunning>
+      <MakeLogFile>false</MakeLogFile>
+      <IgnoreModuleEventsWhileStepping>true</IgnoreModuleEventsWhileStepping>
+      <UseRelativePathsOnly>false</UseRelativePathsOnly>
+      <ExitAction>None</ExitAction>
+      <DisableDisassembly>false</DisableDisassembly>
+      <ExamineMemoryWithXCommand>false</ExamineMemoryWithXCommand>
+      <StepIntoNewInstanceEntry>main</StepIntoNewInstanceEntry>
+      <ExamineRegistersInRawFormat>true</ExamineRegistersInRawFormat>
+      <DisableSignals>false</DisableSignals>
+      <EnableAsyncExecutionMode>false</EnableAsyncExecutionMode>
+      <AsyncModeSupportsBreakpoints>true</AsyncModeSupportsBreakpoints>
+      <TemporaryBreakConsolidationTimeout>0</TemporaryBreakConsolidationTimeout>
+      <EnableNonStopMode>false</EnableNonStopMode>
+      <MaxBreakpointLimit>0</MaxBreakpointLimit>
+      <EnableVerboseMode>true</EnableVerboseMode>
+      <EnablePrettyPrinters>false</EnablePrettyPrinters>
+    </AdditionalGDBSettings>
     <DebugMethod>
       <ID>jlink-jtag</ID>
       <Configuration xsi:type="com.visualgdb.edp.segger.settings">
         <CommandLine>-select USB -device AT32A403AVGT7 -speed auto -if SWD</CommandLine>
         <ProgramMode>Enabled</ProgramMode>
-        <StartupCommands><string>target remote :$$SYS:GDB_PORT$$</string><string>mon reset</string><string>load</string></StartupCommands>
+        <StartupCommands>
+          <string>target remote :$$SYS:GDB_PORT$$</string>
+          <string>mon reset</string>
+          <string>load</string>
+        </StartupCommands>
         <UseUnreliableLiveMemoryEngine>false</UseUnreliableLiveMemoryEngine>
-        <ProgramFLASHUsingExternalTool>false</ProgramFLASHUsingExternalTool><PreferredGDBPort>0</PreferredGDBPort>
+        <ProgramFLASHUsingExternalTool>false</ProgramFLASHUsingExternalTool>
+        <PreferredGDBPort>0</PreferredGDBPort>
       </Configuration>
     </DebugMethod>
-    <AutoDetectRTOS>false</AutoDetectRTOS><SemihostingSupport>Auto</SemihostingSupport>
-    <StepIntoEntryPoint>false</StepIntoEntryPoint><ReloadFirmwareOnReset>false</ReloadFirmwareOnReset><StopAtEntryPoint>false</StopAtEntryPoint>
-    <TimestampProvider>com.sysprogs.arm.dwt</TimestampProvider><TimestampProviderTicksPerSecond>192000000</TimestampProviderTicksPerSecond>
+    <AutoDetectRTOS>true</AutoDetectRTOS>
+    <SemihostingSupport>Auto</SemihostingSupport>
+    <SemihostingPollingDelay>0</SemihostingPollingDelay>
+    <StepIntoEntryPoint>false</StepIntoEntryPoint>
+    <ReloadFirmwareOnReset>false</ReloadFirmwareOnReset>
+    <ValidateEndOfStackAddress>true</ValidateEndOfStackAddress>
+    <StopAtEntryPoint>false</StopAtEntryPoint>
+    <EnableVirtualHalts>true</EnableVirtualHalts>
+    <DynamicAnalysisSettings>
+      <StackVerifier>
+        <VerifyStackBounds>false</VerifyStackBounds>
+        <AutoStepOutOfHook>true</AutoStepOutOfHook>
+        <StackLimitControlledByUser>false</StackLimitControlledByUser>
+        <ExplicitSizeLimit>0</ExplicitSizeLimit>
+        <ExplicitStackBase>0</ExplicitStackBase>
+        <Mode>Auto</Mode>
+      </StackVerifier>
+      <RealTimeWatch>
+        <SupportRTOSAnalysis>false</SupportRTOSAnalysis>
+        <SupportFunctionInstrumentation>false</SupportFunctionInstrumentation>
+        <MeasureOverhead>true</MeasureOverhead>
+      </RealTimeWatch>
+      <InstrumentedFunctions>
+        <InstrumentNewFunctions>true</InstrumentNewFunctions>
+        <ExplicitEndOfFLASH>0</ExplicitEndOfFLASH>
+        <ExplicitEndOfRAM>0</ExplicitEndOfRAM>
+      </InstrumentedFunctions>
+      <RTOSFeatures>
+        <RTOSFeatureSetting>
+          <FeatureID>com.sysprogs.analysis.thread.timing</FeatureID>
+          <Enabled>true</Enabled>
+        </RTOSFeatureSetting>
+        <RTOSFeatureSetting>
+          <FeatureID>com.sysprogs.analysis.freertos.queues</FeatureID>
+          <Enabled>true</Enabled>
+        </RTOSFeatureSetting>
+      </RTOSFeatures>
+    </DynamicAnalysisSettings>
+    <EndOfStackSymbol>_estack</EndOfStackSymbol>
+    <TimestampProvider>com.sysprogs.arm.dwt</TimestampProvider>
+    <TimestampProviderTicksPerSecond>192000000</TimestampProviderTicksPerSecond>
     <KeepConsoleAfterExit>false</KeepConsoleAfterExit>
+    <CodeCoverage>
+      <EnableLiveCoverage>false</EnableLiveCoverage>
+      <CreateCoverageReports>false</CreateCoverageReports>
+      <UpdateInterval>500</UpdateInterval>
+      <CoverageReportDirectory>$(ProjectDir)\AT32_ControlPanel</CoverageReportDirectory>
+    </CodeCoverage>
+    <UnusedStackFillPattern>2779096485</UnusedStackFillPattern>
+    <CheckInterfaceDrivers>true</CheckInterfaceDrivers>
   </Debug>
 </VisualGDBProjectSettings2>
