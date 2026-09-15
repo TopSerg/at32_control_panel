@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 #ifndef HEXT_VALUE
-#define HEXT_VALUE ((uint32_t)8000000U)
+#define HEXT_VALUE ((uint32_t)16000000U)
 #endif
 #define HEXT_STARTUP_TIMEOUT ((uint16_t)0x3000U)
 #define HICK_VALUE ((uint32_t)8000000U)
