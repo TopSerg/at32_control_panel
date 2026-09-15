@@ -4,6 +4,8 @@
 #include "nextion.h"
 #include "timebase.h"
 
+extern bench_measurements_t g_measurements;
+
 int main(void)
 {
     system_clock_config();
