@@ -6,7 +6,6 @@
 
 int main(void)
 {
-    bench_measurements_t m;
     system_clock_config();
     timebase_init();
     bench_adc_init();
@@ -18,8 +17,8 @@ int main(void)
     nextion_set_text("tStatus", "AT32 online");
 
     while (1) {
-        bench_measurements_read(&m);
-        nextion_show_measurements(&m);
+        bench_measurements_read(&g_measurements);
+        nextion_show_measurements(&g_measurements);
         delay_ms(500U);
     }
 }
