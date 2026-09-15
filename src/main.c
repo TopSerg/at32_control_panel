@@ -1,5 +1,5 @@
 #include "at32a403a_conf.h"
-#include "at32a403a_clock.h"
+#include "board_clock.h"
 #include "bench_monitor.h"
 #include "nextion.h"
 #include "timebase.h"
