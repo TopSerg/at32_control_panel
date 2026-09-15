@@ -17,7 +17,8 @@
 #define VIN12_R_BOTTOM_OHM    6650.0f
 #define KTY_PULLUP_OHM        1000.0f
 
-static volatile uint32_t g_adc_dma[BENCH_ADC_CHANNELS];
+volatile uint32_t g_adc_dma[BENCH_ADC_CHANNELS];
+bench_measurements_t g_measurements;
 
 typedef struct { float temp_c; float resistance_ohm; } kty_point_t;
 
@@ -160,7 +161,7 @@ void bench_adc_init(void)
 static volatile uint32_t g_tmr3_overflows=0U;
 static volatile uint32_t g_last_capture_ext=0U;
 static volatile uint32_t g_last_pulse_ms=0U;
-static volatile float g_rpm=0.0f;
+volatile float g_rpm=0.0f;
 static volatile uint8_t g_have_capture=0U;
 
 void bench_rpm_init(void)
