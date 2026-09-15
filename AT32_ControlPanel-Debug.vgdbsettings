@@ -37,30 +37,7 @@
   <CustomBuild>
     <PreSyncActions />
     <PreBuildActions />
-    <PostBuildActions>
-      <CustomActionBase xsi:type="CommandLineAction">
-        <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
-        <RemoteHost>
-          <HostName>BuildMachine</HostName>
-          <Transport>BuiltinShortcut</Transport>
-        </RemoteHost>
-        <Command>py</Command>
-        <Arguments>crc_binary_add.py  VisualGDB/Debug/$(ProjectName).bin</Arguments>
-        <WorkingDirectory>$(BuildDir)</WorkingDirectory>
-        <BackgroundMode>false</BackgroundMode>
-      </CustomActionBase>
-      <CustomActionBase xsi:type="CommandLineAction">
-        <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
-        <RemoteHost>
-          <HostName>BuildMachine</HostName>
-          <Transport>BuiltinShortcut</Transport>
-        </RemoteHost>
-        <Command>py</Command>
-        <Arguments>firmware_info.py  VisualGDB/Debug/$(ProjectName).bin</Arguments>
-        <WorkingDirectory>$(BuildDir)</WorkingDirectory>
-        <BackgroundMode>false</BackgroundMode>
-      </CustomActionBase>
-    </PostBuildActions>
+    <PostBuildActions />
     <PreCleanActions />
     <PostCleanActions />
   </CustomBuild>
