@@ -69,6 +69,7 @@
   <ItemGroup>
     <ClInclude Include="src\at32a403a_conf.h" />
     <ClInclude Include="src\bench_monitor.h" />
+    <ClInclude Include="src\board_clock.h" />
     <ClInclude Include="src\nextion.h" />
     <ClInclude Include="src\timebase.h" />
   </ItemGroup>
@@ -76,9 +77,9 @@
   <ItemGroup>
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\bench_monitor.c" />
+    <ClCompile Include="src\board_clock.c" />
     <ClCompile Include="src\nextion.c" />
     <ClCompile Include="src\timebase.c" />
-    <ClCompile Include="vendor\template\at32a403a_clock.c" />
     <ClCompile Include="vendor\cmsis\device_support\system_at32a403a.c" />
     <ClCompile Include="vendor\startup\startup_at32a403a.s" />
     <ClCompile Include="vendor\drivers\src\at32a403a_adc.c" />
